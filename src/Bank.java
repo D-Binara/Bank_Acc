@@ -13,7 +13,7 @@ public class Bank {
         System.out.println("Bank interest rate is "+interest_rate);
         System.out.println("Your Balance is "+balance);
         System.out.println("Your interest = " +interest);
-        System.out.println(" ");
+        System.out.println("  ");
     }
 
 }
