@@ -30,6 +30,9 @@ public class Main {
         Bank acc2 = new Bank(10);
         acc2.interestcal(2000);
 
+        Bank acc3 =new Bank(10);
+        acc3.interestcal(3000);
+
 
 
     }
