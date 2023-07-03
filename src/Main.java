@@ -2,6 +2,8 @@ import java.sql.*;
 public class Main {
     public static void main(String[] args) {
 
+        System.out.println("Enter your Account Number");
+
         try{
             Class.forName("com.mysql.jdbc.Driver").newInstance();
 
@@ -18,7 +20,7 @@ public class Main {
             System.out.println(""+e);
         }
 
-        System.out.println("Enter your Account Number");
+
 
 
 
