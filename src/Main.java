@@ -1,8 +1,12 @@
 import java.sql.*;
+import java.util.Scanner;
+
 public class Main {
     public static void main(String[] args) {
 
         System.out.println("Enter your Account Number");
+        Scanner x = new Scanner(System.in);
+        int acc = x.nextInt();
 
         try{
             Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
