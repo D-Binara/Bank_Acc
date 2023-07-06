@@ -2,6 +2,7 @@ import java.sql.*;
 import java.util.Scanner;
 
 public class Main {
+
     public static void main(String[] args) {
 
         System.out.println("Enter your Account Number");
@@ -30,29 +31,27 @@ public class Main {
             while (rs.next()) {
                 int acc_no = rs.getInt("account_number");
                 String name =rs.getString("name");
-                System.out.println(name+acc_no);
+                float balance =rs.getInt("Balance");
+                System.out.println("Account Number ="+acc_no);
+                System.out.println("Name ="+name);
+
+                Bank acc1 = new Bank(10);
+                acc1.interestcal(balance);
+
             }
+
+
 
             rs.close();stmt.close();conn.close();
 
 
 
-            Bank acc1 = new Bank(10);
-            acc1.interestcal(1000);
 
-            Bank acc2 = new Bank(10);
-            acc2.interestcal(2000);
-
-            Bank acc3 =new Bank(10);
-            acc3.interestcal(3000);
 
 
         }catch (Exception e){
             System.out.println(""+e);
         }
-
-
-
 
 
     }
