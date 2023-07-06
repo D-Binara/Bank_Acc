@@ -1,5 +1,5 @@
 public class Bank {
-     float balance;
+     float deposit;
      float interest;
      float interest_rate;
 
@@ -9,11 +9,11 @@ public class Bank {
     }
 
 
-    public void interestcal(float balance) {
-        this.balance=balance;
-        interest = balance*interest_rate;
+    public void interestcal(float deposit) {
+        this.deposit=deposit;
+        interest = deposit*interest_rate;
         System.out.println("Bank interest rate is "+interest_rate);
-        System.out.println("Your Balance is "+balance);
+        System.out.println("Your Balance is "+deposit);
         System.out.println("Your interest = " +interest);
         System.out.println("  ");
     }

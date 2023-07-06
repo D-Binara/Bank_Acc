@@ -9,6 +9,10 @@ public class Main {
         Scanner x = new Scanner(System.in);
         int acc = x.nextInt();
 
+        System.out.println("Enter your Account Number");
+        Scanner y = new Scanner(System.in);
+        String pass = y.next();
+
         try{
             Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
 
@@ -21,7 +25,7 @@ public class Main {
 
             String url = "jdbc:mysql://"+database_host+":"+database_port+"/"+database_name;
 
-
+            //Connect to database
             Connection conn =DriverManager.getConnection(url,username,password);
 
             Statement stmt = conn.createStatement();
@@ -29,24 +33,24 @@ public class Main {
             ResultSet rs = stmt.executeQuery("select * from user where account_number="+acc+"");
 
             while (rs.next()) {
-                int acc_no = rs.getInt("account_number");
-                String name =rs.getString("name");
-                float balance =rs.getInt("Balance");
-                System.out.println("Account Number ="+acc_no);
-                System.out.println("Name ="+name);
+                String password1 = rs.getString("password");
+                //check password
+                if (password1.equals(pass)) {
+                    int acc_no =rs.getInt("account_number");
+                    String name =rs.getString("name");
+                    float deposit =rs.getInt("Balance");
+                    System.out.println("Account Number ="+acc_no);
+                    System.out.println("Name ="+name);
 
-                Bank acc1 = new Bank(10);
-                acc1.interestcal(balance);
-
+                    Bank acc1 = new Bank(10);
+                    acc1.interestcal(deposit);
+                }
+                else {
+                    System.out.println("Wrong password");
+                }
             }
 
-
-
             rs.close();stmt.close();conn.close();
-
-
-
-
 
 
         }catch (Exception e){
