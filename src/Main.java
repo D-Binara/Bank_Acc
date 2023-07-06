@@ -25,7 +25,13 @@ public class Main {
 
             Statement stmt = conn.createStatement();
 
-            ResultSet rs = stmt.executeQuery("select * from user");
+            ResultSet rs = stmt.executeQuery("select * from user where account_number="+acc+"");
+
+            while (rs.next()) {
+                int acc_no = rs.getInt("account_number");
+                String name =rs.getString("name");
+                System.out.println(name+acc_no);
+            }
 
             rs.close();stmt.close();conn.close();
 
