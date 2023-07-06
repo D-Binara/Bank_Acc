@@ -9,7 +9,7 @@ public class Main {
         Scanner x = new Scanner(System.in);
         int acc = x.nextInt();
 
-        System.out.println("Enter your Account Number");
+        System.out.println("Enter your password");
         Scanner y = new Scanner(System.in);
         String pass = y.next();
 
