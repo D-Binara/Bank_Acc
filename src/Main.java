@@ -30,27 +30,31 @@ public class Main {
 
             Statement stmt = conn.createStatement();
 
-            ResultSet rs = stmt.executeQuery("select * from user where account_number="+acc+"");
+            ResultSet check_acc_no  = stmt.executeQuery("select * from user where account_number=" + acc + "");
+
+            ResultSet rs = stmt.executeQuery("select * from user where account_number=" + acc + "");
 
             while (rs.next()) {
                 String password1 = rs.getString("password");
                 //check password
                 if (password1.equals(pass)) {
-                    int acc_no =rs.getInt("account_number");
-                    String name =rs.getString("name");
-                    float deposit =rs.getInt("Balance");
-                    System.out.println("Account Number ="+acc_no);
-                    System.out.println("Name ="+name);
+                    int acc_no = rs.getInt("account_number");
+                    String name = rs.getString("name");
+                    float deposit = rs.getInt("Balance");
+                    System.out.println("Account Number =" + acc_no);
+                    System.out.println("Name =" + name);
 
+                    //To call the Bank class
                     Bank acc1 = new Bank(10);
                     acc1.interestcal(deposit);
-                }
-                else {
+                } else {
                     System.out.println("Wrong password");
                 }
             }
 
-            rs.close();stmt.close();conn.close();
+            rs.close();
+            stmt.close();
+            conn.close();
 
 
         }catch (Exception e){
