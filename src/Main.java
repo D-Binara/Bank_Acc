@@ -2,20 +2,20 @@ import java.sql.*;
 import java.util.Scanner;
 
 public class Main {
-
     public static void main(String[] args) {
 
+        //get user account number
         System.out.println("Enter your Account Number");
         Scanner x = new Scanner(System.in);
         int acc = x.nextInt();
 
+        //get user password
         System.out.println("Enter your password");
         Scanner y = new Scanner(System.in);
         String pass = y.next();
 
         try{
             Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
-
 
             String database_name = "bank_db";
             String database_host = "localhost";
@@ -56,9 +56,16 @@ public class Main {
             stmt.close();
             conn.close();
 
-
         }catch (Exception e){
             System.out.println(""+e);
+        }
+
+        System.out.println("Do you want to continue process");
+        Scanner ans= new Scanner(System.in);
+        String answer = ans.next();
+
+        if(answer.equals(answer)){
+
         }
 
 
