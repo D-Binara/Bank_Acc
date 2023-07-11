@@ -4,70 +4,75 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
 
-        //get user account number
-        System.out.println("Enter your Account Number");
-        Scanner x = new Scanner(System.in);
-        int acc = x.nextInt();
+        boolean stop = false;
+        while(!stop) {
 
-        //get user password
-        System.out.println("Enter your password");
-        Scanner y = new Scanner(System.in);
-        String pass = y.next();
+            //get user account number
+            System.out.println("Enter your Account Number");
+            Scanner x = new Scanner(System.in);
+            int acc = x.nextInt();
 
-        try{
-            Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
+            //get user password
+            System.out.println("Enter your password");
+            Scanner y = new Scanner(System.in);
+            String pass = y.next();
 
-            String database_name = "bank_db";
-            String database_host = "localhost";
-            String database_port = "3306";
-            String username = "root";
-            String password = "";
+            try {
+                Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
 
-            String url = "jdbc:mysql://"+database_host+":"+database_port+"/"+database_name;
+                String database_name = "bank_db";
+                String database_host = "localhost";
+                String database_port = "3306";
+                String username = "root";
+                String password = "";
 
-            //Connect to database
-            Connection conn =DriverManager.getConnection(url,username,password);
+                String url = "jdbc:mysql://" + database_host + ":" + database_port + "/" + database_name;
 
-            Statement stmt = conn.createStatement();
+                //Connect to database
+                Connection conn = DriverManager.getConnection(url, username, password);
 
-            ResultSet check_acc_no  = stmt.executeQuery("select * from user where account_number=" + acc + "");
+                Statement stmt = conn.createStatement();
 
-            ResultSet rs = stmt.executeQuery("select * from user where account_number=" + acc + "");
+                ResultSet check_acc_no = stmt.executeQuery("select * from user where account_number=" + acc + "");
 
-            while (rs.next()) {
-                String password1 = rs.getString("password");
-                //check password
-                if (password1.equals(pass)) {
-                    int acc_no = rs.getInt("account_number");
-                    String name = rs.getString("name");
-                    float deposit = rs.getInt("Balance");
-                    System.out.println("Account Number =" + acc_no);
-                    System.out.println("Name =" + name);
+                ResultSet rs = stmt.executeQuery("select * from user where account_number=" + acc + "");
 
-                    //To call the Bank class
-                    Bank acc1 = new Bank(10);
-                    acc1.interestcal(deposit);
-                } else {
-                    System.out.println("Wrong password");
+                while (rs.next()) {
+                    String password1 = rs.getString("password");
+                    //check password
+                    if (password1.equals(pass)) {
+                        int acc_no = rs.getInt("account_number");
+                        String name = rs.getString("name");
+                        float deposit = rs.getInt("Balance");
+                        System.out.println("Account Number =" + acc_no);
+                        System.out.println("Name =" + name);
+
+                        //To call the Bank class
+                        Bank acc1 = new Bank(10);
+                        acc1.interestcal(deposit);
+                    } else {
+                        System.out.println("Wrong password");
+                    }
                 }
+
+                rs.close();
+                stmt.close();
+                conn.close();
+
+            } catch (Exception e) {
+                System.out.println("" + e);
             }
 
-            rs.close();
-            stmt.close();
-            conn.close();
+            System.out.println("Do you want to continue process(Yes or No)");
+            Scanner ans = new Scanner(System.in);
+            String answer = ans.next();
 
-        }catch (Exception e){
-            System.out.println(""+e);
+            if (answer.equals("yes")||answer.equals("Yes")) {
+                        stop=false;
+            } else {
+                stop=true;
+                System.out.println("Thank You.Come again");
+            }
         }
-
-        System.out.println("Do you want to continue process");
-        Scanner ans= new Scanner(System.in);
-        String answer = ans.next();
-
-        if(answer.equals(answer)){
-
-        }
-
-
     }
 }
