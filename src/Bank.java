@@ -4,11 +4,9 @@ public class Bank {
      float interest_rate;
      float balance;
 
-
     public Bank(float interest_rate){
         this.interest_rate=interest_rate;
     }
-
 
     public void interestcal(float deposit) {
         this.deposit=deposit;
@@ -20,6 +18,4 @@ public class Bank {
         System.out.println("Your Balance = " +balance);
         System.out.println("  ");
     }
-
-
 }
