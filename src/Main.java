@@ -4,75 +4,88 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
 
-        boolean stop = false;
-        while(!stop) {
+        System.out.println("Sign in (1) Or Sign Up (2)");
+        System.out.println("(Enter 1 or 2)");
+        Scanner sign = new Scanner(System.in);
+        String log = sign.next();
 
-            //get user account number
-            System.out.println("Enter your Account Number");
-            Scanner x = new Scanner(System.in);
-            int acc = x.nextInt();
+        if (log.equals("1")){
 
-            //get user password
-            System.out.println("Enter your password");
-            Scanner y = new Scanner(System.in);
-            String pass = y.next();
+            boolean stop = false;
+            while (!stop) {
 
-            try {
-                Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
+                //get user account number
+                System.out.println("Enter your Account Number");
+                Scanner x = new Scanner(System.in);
+                int acc = x.nextInt();
 
-                String database_name = "bank_db";
-                String database_host = "localhost";
-                String database_port = "3306";
-                String username = "root";
-                String password = "";
+                //get user password
+                System.out.println("Enter your password");
+                Scanner y = new Scanner(System.in);
+                String pass = y.next();
 
-                String url = "jdbc:mysql://" + database_host + ":" + database_port + "/" + database_name;
 
-                //Connect to database
-                Connection conn = DriverManager.getConnection(url, username, password);
+                try {
+                    Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
 
-                Statement stmt = conn.createStatement();
+                    String database_name = "bank_db";
+                    String database_host = "localhost";
+                    String database_port = "3306";
+                    String username = "root";
+                    String password = "";
 
-                ResultSet check_acc_no = stmt.executeQuery("select * from user where account_number=" + acc + "");
+                    String url = "jdbc:mysql://" + database_host + ":" + database_port + "/" + database_name;
 
-                ResultSet rs = stmt.executeQuery("select * from user where account_number=" + acc + "");
+                    //Connect to database
+                    Connection conn = DriverManager.getConnection(url, username, password);
 
-                while (rs.next()) {
-                    String password1 = rs.getString("password");
-                    //check password
-                    if (password1.equals(pass)) {
-                        int acc_no = rs.getInt("account_number");
-                        String name = rs.getString("name");
-                        float deposit = rs.getInt("Balance");
-                        System.out.println("Account Number =" + acc_no);
-                        System.out.println("Name =" + name);
+                    Statement stmt = conn.createStatement();
 
-                        //To call the Bank class
-                        Bank acc1 = new Bank(10);
-                        acc1.interestcal(deposit);
-                    } else {
-                        System.out.println("Wrong password");
+                    ResultSet check_acc_no = stmt.executeQuery("select * from user where account_number=" + acc + "");
+
+                    ResultSet rs = stmt.executeQuery("select * from user where account_number=" + acc + "");
+
+                    while (rs.next()) {
+                        String password1 = rs.getString("password");
+                        //check password
+                        if (password1.equals(pass)) {
+                            int acc_no = rs.getInt("account_number");
+                            String name = rs.getString("name");
+                            float deposit = rs.getInt("Balance");
+                            System.out.println("Account Number =" + acc_no);
+                            System.out.println("Name =" + name);
+
+                            //To call the Bank class
+                            Bank acc1 = new Bank(10);
+                            acc1.interestcal(deposit);
+                        } else {
+                            System.out.println("Wrong password");
+                        }
                     }
+
+                    rs.close();
+                    stmt.close();
+                    conn.close();
+
+                } catch (Exception e) {
+                    System.out.println("" + e);
                 }
 
-                rs.close();
-                stmt.close();
-                conn.close();
+                System.out.println("Do you want to continue process(Yes or No)");
+                Scanner ans = new Scanner(System.in);
+                String answer = ans.next();
 
-            } catch (Exception e) {
-                System.out.println("" + e);
+                if (answer.equals("yes") || answer.equals("Yes")) {
+                    stop = false;
+                } else {
+                    stop = true;
+                    System.out.println("Thank You.Come again");
+                }
             }
+        }
 
-            System.out.println("Do you want to continue process(Yes or No)");
-            Scanner ans = new Scanner(System.in);
-            String answer = ans.next();
-
-            if (answer.equals("yes")||answer.equals("Yes")) {
-                        stop=false;
-            } else {
-                stop=true;
-                System.out.println("Thank You.Come again");
-            }
+        else {
+            System.out.println("Please Wait until update this code");
         }
     }
 }
