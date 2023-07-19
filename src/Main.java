@@ -9,7 +9,7 @@ public class Main {
         Scanner sign = new Scanner(System.in);
         String log = sign.next();
 
-        if (log.equals("1")){
+        if (log.equals("1")) {
 
             boolean stop = false;
             while (!stop) {
@@ -82,10 +82,13 @@ public class Main {
                     System.out.println("Thank You.Come again");
                 }
             }
-        }
+        } else {
+            System.out.println("Enter Your Name");
+            Scanner nm = new Scanner(System.in);
+            String name = nm.next();
+            ConnectDB bin = new ConnectDB();
+            bin.getconnection(name);
 
-        else {
-            System.out.println("Please Wait until update this code");
         }
     }
 }
