@@ -21,8 +21,7 @@ public class Main {
 
                 //get user password
                 System.out.println("Enter your password");
-                Scanner y = new Scanner(System.in);
-                String pass = y.next();
+                String pass = x.next();
 
 
                 try {
@@ -70,6 +69,8 @@ public class Main {
                 } catch (Exception e) {
                     System.out.println("" + e);
                 }
+
+
 
                 //sign in again
                 System.out.println("Do you want to sign in again(yes or No)");
