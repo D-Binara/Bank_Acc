@@ -19,13 +19,9 @@ public class ConnectDB {
 
             Statement stmt = conn.createStatement();
 
-            ResultSet Enter = stmt.executeQuery("Insert into user (name) values ("+Name+")");
+            String sql = "INSERT INTO user (name) VALUES ('Binar')";
+            stmt.executeUpdate(sql);
 
-            while (Enter.next()) {
-                System.out.println("Your account create correctly");
-            }
-
-            Enter.close();
             stmt.close();
             conn.close();
 

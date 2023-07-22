@@ -4,15 +4,15 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
 
-        System.out.println("Sign in (1) Or Sign Up (2)");
-        System.out.println("(Enter 1 or 2)");
-        Scanner sign = new Scanner(System.in);
-        String log = sign.next();
+        boolean stop = false;
+        while (!stop) {
 
-        if (log.equals("1")) {
+            System.out.println("Sign in (1) Or Sign Up (2)");
+            System.out.println("(Enter 1 or 2)");
+            Scanner sign = new Scanner(System.in);
+            String log = sign.next();
 
-            boolean stop = false;
-            while (!stop) {
+            if (log.equals("1")) {
 
                 //get user account number
                 System.out.println("Enter your Account Number");
@@ -71,24 +71,26 @@ public class Main {
                     System.out.println("" + e);
                 }
 
-                System.out.println("Do you want to continue process(Yes or No)");
+                //sign in again
+                System.out.println("Do you want to sign in again(yes or No)");
                 Scanner ans = new Scanner(System.in);
                 String answer = ans.next();
 
-                if (answer.equals("yes") || answer.equals("Yes")) {
+                if (answer.equalsIgnoreCase("yes")) {
                     stop = false;
                 } else {
                     stop = true;
                     System.out.println("Thank You.Come again");
                 }
-            }
-        } else {
-            System.out.println("Enter Your Name");
-            Scanner nm = new Scanner(System.in);
-            String name = nm.next();
-            ConnectDB bin = new ConnectDB();
-            bin.getconnection(name);
 
+            } else {
+                //insert details into database
+                System.out.println("Enter Your Name");
+                Scanner nm = new Scanner(System.in);
+                String name = nm.next();
+                ConnectDB bin = new ConnectDB();
+                bin.getconnection(name);
+            }
         }
     }
 }
