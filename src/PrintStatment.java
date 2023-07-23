@@ -5,6 +5,7 @@ public class PrintStatment {
 
         try {
             File obj = new File("Bank_Statement.txt");
+            obj.createNewFile();
             System.out.println(obj.exists());
 
         } catch (Exception e) {

@@ -4,6 +4,7 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
 
+
         boolean stop = false;
         while (!stop) {
 
@@ -15,13 +16,16 @@ public class Main {
             if (log.equals("1")) {
 
                 //get user account number
+
                 System.out.println("Enter your Account Number");
+
                 Scanner x = new Scanner(System.in);
                 int acc = x.nextInt();
 
                 //get user password
+                Scanner y = new Scanner(System.in);
                 System.out.println("Enter your password");
-                String pass = x.next();
+                String pass = y.next();
 
 
                 try {
@@ -70,7 +74,15 @@ public class Main {
                     System.out.println("" + e);
                 }
 
+                //Print bank statement
+                System.out.println("Do you want bank statement");
+                Scanner inp = new Scanner(System.in);
+                String b_stat = inp.next();
 
+                if(b_stat.equalsIgnoreCase("yes")) {
+                    PrintStatment stat = new PrintStatment();
+                    stat.print();
+                }
 
                 //sign in again
                 System.out.println("Do you want to sign in again(yes or No)");
