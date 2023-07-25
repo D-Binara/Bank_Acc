@@ -61,6 +61,7 @@ public class Main {
                             //To call the Bank class
                             Bank acc1 = new Bank(10);
                             acc1.interestcal(deposit);
+
                         } else {
                             System.out.println("Wrong password");
                         }
@@ -101,8 +102,10 @@ public class Main {
                 System.out.println("Enter Your Name");
                 Scanner nm = new Scanner(System.in);
                 String name = nm.next();
+                System.out.println("Enter new Password");
+                String password = nm.next();
                 ConnectDB bin = new ConnectDB();
-                bin.getconnection(name);
+                bin.getconnection(name,password);
             }
         }
     }

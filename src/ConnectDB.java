@@ -2,7 +2,7 @@ import java.sql.*;
 
 public class ConnectDB {
 
-    public void getconnection(String Name) {
+    public void getconnection(String name,String newPassword) {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
 
@@ -19,7 +19,7 @@ public class ConnectDB {
 
             Statement stmt = conn.createStatement();
 
-            String sql = "INSERT INTO user (name) VALUES ('Binar')";
+            String sql = "INSERT INTO user (id,account_number,name,balance,password)  VALUES (5,5,'bin',0,"+newPassword+")";
             stmt.executeUpdate(sql);
 
             stmt.close();
