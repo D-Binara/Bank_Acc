@@ -65,11 +65,13 @@ public class Main {
                         } else {
                             System.out.println("Wrong password");
                         }
+
                     }
 
                     rs.close();
                     stmt.close();
                     conn.close();
+
 
                 } catch (Exception e) {
                     System.out.println("" + e);
