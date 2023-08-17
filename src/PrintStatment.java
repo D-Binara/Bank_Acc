@@ -9,8 +9,7 @@ public class PrintStatment {
             obj.createNewFile();
             FileWriter Writer
                     = new FileWriter("Bank_Statement.txt");
-            Writer.write(
-                    "test");
+            Writer.write("This is **** Bank.");
             Writer.close();
             System.out.println(obj.exists());
 

@@ -4,7 +4,7 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
 
-
+        System.out.println("Welcome to *** Bank");
         boolean stop = false;
         while (!stop) {
 
@@ -65,7 +65,6 @@ public class Main {
                         } else {
                             System.out.println("Wrong password");
                         }
-
                     }
 
                     rs.close();
