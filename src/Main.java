@@ -1,8 +1,14 @@
 import java.sql.*;
 import java.util.Scanner;
+import javax.swing.*;
 
 public class Main {
     public static void main(String[] args) {
+
+        //test GUI
+        JFrame f=new JFrame();
+        JButton b=new JButton("click");
+
 
         System.out.println("Welcome to *** Bank");
         boolean stop = false;
